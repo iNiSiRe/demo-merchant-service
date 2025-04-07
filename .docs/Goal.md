@@ -47,5 +47,4 @@ The goal of this implementation is to develop the Merchant back-end that allows 
 
 ## Notes
 - PaymentGateway is available locally as docker container (see docker-compose.yml)
-- Interaction diagram: ![Merchant<->PaymentGateway.png](Merchant%3C-%3EPaymentGateway.png)
 - PaymentGateway API docs: [PaymentGatewayAPI.md](PaymentGatewayAPI.md)
