@@ -1,0 +1,52 @@
+services:
+  composer:
+    image: composer:lts
+    volumes:
+      - ./:/app
+      - /tmp:/tmp
+    user: "1000:1000"
+
+  php:
+    image: php:8.2-fpm
+    volumes:
+      - ./:/var/www/html
+      - /tmp:/tmp
+    user: "1000:1000"
+
+  nginx:
+    image: nginx:1.27
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - .ci/docker/nginx/local.conf:/etc/nginx/conf.d/default.conf
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db
+    volumes:
+      - mysql_data:/var/lib/mysql/
+
+  payment-gateway:
+    image: nginx:1.27
+    environment:
+      FASTCGI_PASS_URI: "payment-gateway-backend:9000"
+      FASTCGI_ROOT: "/var/www/html/public/"
+    ports:
+      - "8081:80"
+    volumes:
+      - .ci/docker/nginx/default.template.conf:/etc/nginx/templates/default.conf.template
+
+  payment-gateway-backend:
+    image: inisire/payment-gateway-mock:latest
+    environment:
+      - SIGNATURE_KEY=test
+      - CALLBACK_GATE_URL=http://php/api/v1/payments/callback
+      - CALLBACK_SITE_ID=1
+      - SUCCESS_CARDS='["5555555555554444","5555555555553333","5555555555552222","5555555555551111"]'
+      - NOT_ENOUGH_FUNDS_CARDS='["1111111111111111"]'
+
+volumes:
+  mysql_data: {}
