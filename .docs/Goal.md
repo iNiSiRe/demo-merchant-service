@@ -27,21 +27,21 @@ The goal of this implementation is to develop the Merchant back-end that allows 
 
 ## Functional requirements
 
-### GET /balance
+#### GET /balance
 - Returns the current balance.
   
-### POST /topUp
+#### POST /topUp
 - Accepts amount and currency.
 - Forwards the request to PaymentGateway.
 - Handles response (success/failure).
 - Updates user balance on success.
 - Return payment processing result.
 
-### Integration with PaymentGateway
+#### Integration with PaymentGateway
 - Creating a payment session and confirming the payment.
 - Handle callbacks
 
-## Data Storage
+#### Data Storage
 - User balance information must be stored in a persistent store (e.g., MySQL).
 - Consider basic transaction locking and possible concurrency issues.
 
