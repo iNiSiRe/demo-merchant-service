@@ -14,7 +14,7 @@
 | Name          | Type   | Comment                                                |
 |---------------|--------|--------------------------------------------------------|
 | site_id       | int    | **Merchant** identifier provided by **PaymentGateway** |
-| site_login    | string | **Client** identifier provided by **Merchant**         |
+| site_login    | int    | **Client** identifier provided by **Merchant**         |
 | amount_series | ?float | Recommended sum                                        |
 | currency      | string | Currency ISO 4217 code (USD, EUR)                      |
 | force_action  | int    | Must be '1', for compatibility purpose                 |
