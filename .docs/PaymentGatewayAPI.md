@@ -39,7 +39,7 @@
 
 | Name          | API                                    | Request Format              | Response Format                             | Comment                                                                                         |
 |---------------|----------------------------------------|-----------------------------|---------------------------------------------|-------------------------------------------------------------------------------------------------|
-| check_deposit | POST <CALLBACK_GATE_URL>/check_deposit | **Json\<CheckDeposit\>**    | **Json\<CheckDepositResult\>**              | **PaymentGateway** ask **Merchant** about payment initialization for **Client**                 |
+| check_deposit | POST <CALLBACK_GATE_URL>/cashbox_request | **Json\<CheckDeposit\>**    | **Json\<CheckDepositResult\>**              | **PaymentGateway** ask **Merchant** about payment initialization for **Client**                 |
 | callback      | POST <CALLBACK_GATE_URL>/callback      | **Json\<PaymentCallback\>** | **Json\<PaymentCallbackProcessingResult\>** | **PaymentGateway** notify **Merchant** about payment processing result. **MUST BE IDEMPOTENT**. |
 
 ## Format types definitions
